@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Arrays</h2>
+
+<p>Create an Array with one element.</p>
+
+<input type=text id=d1>
+<br>
+<button onclick="add()">Add to array</button>
+
+<p id="demo"></p>
+
+<script>
+var tdata=[];
+
+function add()
+{
+	tdata.push(d1.value);
+    d1.value="";
+    tdata.sort();
+	demo.innerHTML=tdata;
+}
+
+
+</script>
+
+</body>
+</html>

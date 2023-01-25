@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.btn {
+  padding: 15px 32px;
+  text-align: center;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color:lightgreen;
+  color: black;
+}
+.form {
+padding:5px;
+    margin:10px;
+   
+}
+
+table,th,td,tr {
+border: 1px solid black;
+border-collapse: collapse;
+
+}
+
+.w-100
+{
+width:96%;
+    border: none;
+    background: grey;
+}
+
+.w-100:focus
+{
+border:none;
+    outline: none;
+    background: lightgreen;
+}
+ 
+body {
+background-color:lightblue;
+}
+
+
+
+
+</style>
+</head>
+
+<body>
+
+<h2></h2>
+
+<form class="form">
+
+  <label for="name">Name:</label>
+  <input type="text" id="fname" class="input"> <br><br>
+ 
+  <label for="rollno">Roll No.:</label>
+  <input type="number" id="rollno" class="input"> <br><br>
+ 
+</form>
+
+
+<table style="width:100%">
+  <tr>
+    <th>Hindi</th>
+    <th>English</th>
+    <th>Math</th>
+    <th>Total</th>
+    <th>Percent</th>
+    <th>Result</th>
+    <th>Grade</th>  
+  </tr>
+ 
+    <td> <input type="number" id="d1" class="w-100"></td>
+    <td> <input type="number" id="d2" class="w-100"></td>
+    <td> <input type="number" id="d3" class="w-100"></td>
+    <td> <input type="number" id="d4" class="w-100"></td>
+    <td> <input type="text" id="d5" class="w-100"></td>
+    <td> <input type="text" id="d6" class="w-100"></td>
+    <td> <input type="TEXT" id="d7" class="w-100"></td>
+ 
+  </table><br>
+  <select id="namelist" size="8" style="width:120px;">
+  </select>
+<button type="button" onclick="add()" class="btn">add</button>
+<button type="button" onclick="show()" class="btn">Show</button>
+<br>
+
+<p id="demo"></p>
+
+<script>
+class student {
+constructor(name,rollno,hindi,english,math)
+    {
+    this.name=name;
+    this.rollno=rollno;
+    this.hindi=hindi;
+    this.english=english;
+    this.math=math;
+    this.total=0;
+    this.percentage=0;
+    this.result="";
+    this.grade="";
+    }
+get calculate()
+    {
+    this.total=this.hindi+this.english+this.math;
+    this.percentage=(this.total/3).toFixed(2);
+    if(this.percentage>36)
+    this.result="pass";
+    else
+    this.result="fail";
+
+if (this.percentage>80) this.grade="A";
+    else if (this.percentage>60) this.grade="B";
+    else if (this.percentage>40) this.grade="c";
+    else this.grade="D";
+    }
+}
+
+var st=[];
+demo.innerHTML="hello";
+
+function add()
+{
+
+let i;
+if (st.length==undefined) i=0;
+else i=st.length;
+   
+st[i]=
+    new student(
+    fname.value,
+        rollno.value,
+        parseInt(d1.value),
+        parseInt(d2.value),
+        parseInt(d3.value),
+        );
+
+st[i].calculate;
+   
+d4.value=st[i].total;
+    d5.value=st[i].percentage;
+    d6.value=st[i].result;
+    d7.value=st[i].grade;
+
+
+  var option = document.createElement("option");
+  option.text =st[i].name;
+  option.value = i;
+  namelist.add(option);
+}
+
+function show()
+{
+demo.innerHTML= JSON.stringify(st);
+
+
+}
+
+
+</script>
+
+</body>
+</html>

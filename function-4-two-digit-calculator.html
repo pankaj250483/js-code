@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+label,input
+{
+min-width: 30%;
+    display: inline-block;
+    font-size: 20px;
+}
+label
+{
+color: blue;
+
+}
+</style>
+
+</head>
+<body>
+<h1>Two Digit Calculator Example</h1>
+<label>Enter First Digit</label>
+<input id="x" type=number><br><br>
+<label>Enter Second Digit</label>
+<input id="y" type=numbe><br><br>
+<label>Answer</label>
+<input id="z" type=number><span id="r"></span><br><br>
+<button onclick="add()">Add</button>
+<button onclick="sub()">Subtract</button>
+<button onclick="mul()">Multiply</button>
+<button onclick="div()">Divide</button>
+<button onclick="res()">Result</button>
+
+<script>
+function add()
+{
+z.value=parseInt(x.value)+parseInt(y.value);
+}
+function sub()
+{
+z.value=parseInt(x.value)-parseInt(y.value);
+}
+function mul()
+{
+z.value=parseInt(x.value)*parseInt(y.value);
+}
+function div()
+{
+z.value=parseInt(x.value)/parseInt(y.value);
+}
+function res()
+{
+rv=parseInt(z.value)
+if(rv>36)
+    {
+    r.innerHTML="Result : Passed";
+    }
+    else
+    {
+    r.innerHTML="Result : Fail";
+    }
+}
+</script>
+
+</body>
+</html>

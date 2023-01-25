@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Random Numbers Shuffle with Ramdom method</h2>
+<label>Enter Total Number of Card</label>
+<input type=number id="totalcard" value="75"><br><br>
+<label>Enter Total Number of Card</label>
+<input type=number id="deckofcard" value="10"><br><br>
+
+<button id="b1" onclick="shuffle()">Shuffle</button>
+
+<p id="demo"></p>
+
+<script>
+
+totaldeck=parseInt(totalcard.value);
+deck=parseInt(deckofcard.value);
+
+function shuffle()
+{
+var list = [];
+for(i=1;i<=deck;i++)
+  {
+  let x = Math.floor((Math.random() * totaldeck) + 1);
+  list.push(x);
+  }
+demo.innerHTML=list;
+
+}
+
+</script>
+</html>
