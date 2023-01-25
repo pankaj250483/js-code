@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+}
+
+.btn {
+ 
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+
+.w-100
+{ width:96%;
+}
+
+
+</style>
+<body>
+
+<div>
+  <form>
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname">
+   
+    <label for="DOB">DOB</label>
+    <input type="text" id="DOB" name="Date of Birth">
+   
+    <label for="Address">Address</label>
+    <input type="text" id="address" name="Address">
+   
+    <label for="Mobile no">Mobile no</label>
+    <input type="text" id="mobileno" name="Mobile no">
+   
+     <label for="Department">Department</label>
+    <input type="text" id="department" name="Department">
+   
+   
+    <label for="Designation">Designation</label>
+    <input type="text" id="designation" name="Designation">
+   
+    <label for="city">City</label>
+    <select id="city" name="city">
+      <option value="anupgarh">anupgarh</option>
+      <option value="anupgarh">ganganagar</option>
+      <option value="bikaner">bikaner</option>
+    </select>
+   
+     </form>
+  </div>
+ 
+  <table style="width:100%">
+  <tr>
+    <th>Basic</th>
+    <th>DA50%</th>
+    <th>PF10%</th>
+    <th>HRA10%</th>
+    <th>Gross salary</th>
+    <th>otherdeduction</th>
+    <th>pfdeduction</th>
+    <th>Net salary</th>
+    </tr>
+ 
+    <td> <input type="number" id="d1" class="w-100"></td>
+    <td> <input type="number" id="d2" readonly class="w-100"></td>
+    <td> <input type="number" id="d3" readonly class="w-100"></td>
+    <td> <input type="number" id="d4"readonly class="w-100"></td>
+    <td> <input type="number" id="d5" readonly class="w-100"></td>
+    <td> <input type="number" id="d6" class="w-100"></td>
+    <td> <input type="number" id="d7"readonly class="w-100"></td>
+    <td> <input type="number" id="d8"readonly class="w-100"></td>
+   
+ 
+  </table><br>
+   <button type="button" onclick="add()" class="btn">add</button>
+<button type="button" onclick="show()" class="btn">Show</button>
+<button type="button" onclick="update()" class="btn">Update</button>
+
+<p id="demo"></p>
+
+<script>
+class employee {
+constructor(firstname,lastname,DOB,address,mobileno,department,designation,city,basic,otherdeduction)
+    {
+    this.firstname=firstname;
+    this.lastname=lastname;
+    this.DOB=DOB;
+    this.address=address;
+    this.mobileno=mobileno;
+    this.department=department;
+    this.designation=designation;
+    this.city=city;
+    this.basic=basic;
+    this.hra=0;
+    this.da=0;
+    this.pf=0;
+    this.grosssalary=0;
+    this.pfdeduction=0;
+    this.otherdeudction=otherdeduction
+    this.netsalary=0;
+    }
+   
+get calculate()
+{
+this.da=this.basic*50/100;
+this.hra=this.basic*10/100;
+this.pf=this.basic*10/100;
+this.pfdeduction=this.basic*20/100;
+this.grosssalary=this.basic+this.hra+this.pf;
+this.netsalary=this.grosssalary-this.pfdeduction-this.otherdeudction;
+}
+}
+
+var person=[];
+demo.innerHTML="hello";
+var i;
+
+function add()
+{
+if (person.length==undefined) i=0;
+else i=person.length;
+   
+person[i]=
+    new employee(
+    fname.value,
+    lname.value,
+    DOB.value,
+    address.value,
+    mobileno.value,
+    department.value,
+    designation.value,
+    city.value,
+     parseInt(d1.value),
+     parseInt(d6.value),
+        );
+       
+person[i].calculate;  
+
+d2.value=person[i].da;
+d3.value=person[i].pf;
+    d4.value=person[i].hra;
+d5.value=person[i].grosssalary;
+    d7.value=person[i].pfdeduction;
+    d8.value=person[i].netsalary;
+   
+   
+     var option=
+    document.createElement("option");
+    option.text=person[i].firstname;
+    option.value=i;
+    index.value=i;
+   
+   }
+   
+   
+   function show()
+   {
+   demo.innerHTML=JSON.stringify(person);
+   }
+   
+ 
+   
+
+</script>
+ 
+ 
+
+</body>
+</html>
