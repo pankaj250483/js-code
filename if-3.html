@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Branchig IF Sample -3 </title>
+</head>
+<body>
+<label>Enter Your Name</label>
+<input type=text id="d1">
+<br><br>
+<button onclick="hello()"> Welcome </button>
+<p id=d2></p>
+<script>
+function hello()
+{
+
+	d1.value=d1.value.toUpperCase();
+    
+	if(d1.value == "PANKAJ" || d1.value=="SONU" || d1.value=="DIMPLE" )
+    	d2.innerHTML=`Hello ${d1.value}! How are you.`;
+    else if(d1.value=="")
+    	d2.innerHTML="Please entry any name";
+    else
+    {
+    	d2.innerHTML="";
+        alert("Sorry! You are not authorised person.");
+    }
+}
+</script>
+</body>
+</html>

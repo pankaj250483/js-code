@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<label>Enter Marks</label>
+
+<input id=d1 type=number>
+<br><br><br><br>
+<label>Result : </label>
+<input id=d2 type=text readonly>
+<br><br><br><br>
+<label>Grade : </label>
+<input id=d3 type=text readonly>
+
+<br><br>
+<button onclick="mysonu()">Show Division</button>
+
+
+
+<script>
+
+function mysonu()
+{
+
+	var x=d1.value;
+	x=parseInt(x); 	   
+	
+    if(x >36)
+    {
+    d2.value="Pass";
+    }
+	else
+	{
+	d2.value="Fail";
+    }
+    
+    if(x > 80 && x<100) d3.value="A";
+    else if (x>60 && x<80) d3.value="B";
+    else if (x>40 && x<60) d3.value="C";
+	else if(x>36 && x<40) d3.value="D";
+	else d3.value="-";
+
+	
+}
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

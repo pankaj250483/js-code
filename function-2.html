@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Functions</h2>
+
+<p id="p1">This example calls a function to convert from Fahrenheit to Celsius:</p>
+
+
+<input id=d1 type=number onblur="dim()" onmouseover="dimple()" onclick="dimple()">
+<input id=d2 type=number>
+<button onclick="add(d1.value,d2.value);">Add</button>
+<input id=d3 type=number readonly>
+
+<script>
+
+function add(x,y)
+{
+    d3.value=parseInt(x)+parseInt(y);
+}
+
+
+function dimple()
+{
+	d1.style.backgroundColor="yellow";
+    d1.style.color="red";
+    
+}
+
+function dim()
+{
+	d1.style.backgroundColor="white";
+    d1.style.color="black";
+    
+}
+
+</script>
+
+</body>
+</html>
