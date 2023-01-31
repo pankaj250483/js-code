@@ -151,16 +151,78 @@ d4.value=st[i].total;
   option.text =st[i].name;
   option.value = i;
   namelist.add(option);
-  
+
+  upload(i);
+
 }
 
 function show()
 {
 demo.innerHTML= JSON.stringify(st);
 
-
 }
 
+var apiurl="http://localhost:3001/";
+
+function upload(i)
+{
+    fetch(apiurl+'post', {
+    method: 'POST',
+    body: JSON.stringify(st[i]),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    }
+  }).then(function (response) {
+    if (response.ok) {
+      return response.json();
+    }
+    return Promise.reject(response);
+  }).then(function (data) {
+    alert("Data Addeed to Database Successfully...");
+  }).catch(function (error) {
+    alert('Something went wrong.', error);
+  });
+  
+}
+
+function loaddata()
+{
+
+const batchTrack = document.getElementById("namelist");
+
+const getPost = async () => {
+  const response = await fetch(apiurl+'getAll');
+  const data = await response.json();
+  return data;
+};
+
+
+const displayOption = async () => {
+  const options = await getPost();
+  for (option of options) 
+  {
+    const newOption = document.createElement("option");
+    newOption.value = option.id;
+    newOption.text = option.name;
+    batchTrack.appendChild(newOption);
+    ii=st.length;
+    st[ii]=
+      new student(
+          option.name,
+          option.rollno,
+          parseInt(option.hindi),
+          parseInt(option.english),
+          parseInt(option.math)
+          );
+    st[ii].calculate;
+  }
+};
+
+displayOption();
+  
+}
+
+loaddata();
 
 </script>
 
