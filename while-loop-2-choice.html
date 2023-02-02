@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript For In Loop</h2>
+<p>The for in statement loops through the properties of an object:</p>
+
+<p id="demo"></p>
+
+<script>
+
+x=0;
+choice=true;
+
+while(choice==true)
+{
+    choice=confirm("DO you want to continue : ");
+    ++x;
+}
+
+
+
+document.getElementById("demo").innerHTML = `You have press ok ${x} times.`;
+</script>
+
+</body>
+</html>
