@@ -2,7 +2,6 @@
 <html>
 <head>
 <style>
-
 .btn {
   padding: 15px 32px;
   text-align: center;
@@ -27,7 +26,6 @@ border-collapse: collapse;
 {
 width:96%;
     border: none;
-    background: grey;
 }
 
 .w-100:focus
@@ -36,13 +34,21 @@ border:none;
     outline: none;
     background: lightgreen;
 }
- 
-body {
-background-color:lightblue;
+
+input:read-only
+{
+  background-color: lightgray;
 }
 
+input:read-only:focus
+{
+  background-color: lightgray;
+}
 
-
+body 
+{
+background-color:lightblue;
+}
 
 </style>
 </head>
@@ -76,21 +82,24 @@ background-color:lightblue;
     <td> <input type="number" id="d1" class="w-100"></td>
     <td> <input type="number" id="d2" class="w-100"></td>
     <td> <input type="number" id="d3" class="w-100"></td>
-    <td> <input type="number" id="d4" class="w-100"></td>
-    <td> <input type="text" id="d5" class="w-100"></td>
-    <td> <input type="text" id="d6" class="w-100"></td>
-    <td> <input type="TEXT" id="d7" class="w-100"></td>
+    <td> <input type="number" id="d4" class="w-100" readonly></td>
+    <td> <input type="text" id="d5" class="w-100" readonly></td>
+    <td> <input type="text" id="d6" class="w-100" readonly></td>
+    <td> <input type="TEXT" id="d7" class="w-100" readonly></td>
  
   </table><br>
   <select id="namelist" size="8" style="width:120px;">
   </select>
 <button type="button" onclick="add()" class="btn">add</button>
 <button type="button" onclick="show()" class="btn">Show</button>
+<button type="button" onclick="showobj()" class="btn">Show Object</button>
 <br>
 
 <p id="demo"></p>
 
 <script>
+
+//student class structure  
 class student {
 constructor(name,rollno,hindi,english,math)
     {
@@ -113,16 +122,99 @@ get calculate()
     else
     this.result="fail";
 
-if (this.percentage>80) this.grade="A";
+  if (this.percentage>80) this.grade="A";
     else if (this.percentage>60) this.grade="B";
     else if (this.percentage>40) this.grade="c";
     else this.grade="D";
     }
+
+get showdata()
+  {
+    fname.value=this.name
+    rollno.value=this.rollno
+    d1.value=this.hindi
+    d2.value=this.english
+    d3.value=this.math
+    d4.value=this.total
+    d5.value=this.percentage
+    d6.value=this.result
+    d7.value=this.grade  
+  }
 }
 
 var st=[];
-demo.innerHTML="hello";
+demo.innerHTML="Welcome....";
 
+
+//Upload function for adding record in dataabase which will be called by add function
+var apiurl="http://localhost:3001/";
+
+function upload(i)
+{
+    fetch(apiurl+'post', {
+    method: 'POST',
+    body: JSON.stringify(st[i]),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    }
+  }).then(function (response) {
+    if (response.ok) {
+      return response.json();
+    }
+    return Promise.reject(response);
+  }).then(function (data) {
+    alert("Data Addeed to Database Successfully...");
+  }).catch(function (error) {
+    alert('Something went wrong.', error);
+  });
+  
+}
+
+
+//Funciton Load data which auto start when page load and pull data from database
+//and add in student object and listbox
+function loaddata()
+{
+const batchTrack = document.getElementById("namelist");
+
+  const getPost = async () => 
+  {
+    const response = await fetch(apiurl+'getAll');
+    const data = await response.json();
+    return data;
+  };
+
+  const displayOption = async () => 
+  {
+    const options = await getPost();
+    for (option of options) 
+    {
+      const newOption = document.createElement("option");
+      newOption.value = option.id;
+      newOption.text = option.name;
+      batchTrack.appendChild(newOption);
+      ii=st.length;
+      st[ii]=
+        new student(
+            option.name,
+            option.rollno,
+            parseInt(option.hindi),
+            parseInt(option.english),
+            parseInt(option.math)
+            );
+      st[ii].calculate;
+    }
+  };
+
+displayOption();
+  
+}
+
+//calling loaddata function when page is start.
+loaddata();
+
+
+// Function for adding data to listbox and database
 function add()
 {
 
@@ -152,77 +244,23 @@ d4.value=st[i].total;
   option.value = i;
   namelist.add(option);
 
+  //calling upload function for adding record in database
   upload(i);
 
 }
 
-function show()
+
+//Function for showing sutdent object (like json format)
+function showobj()
 {
 demo.innerHTML= JSON.stringify(st);
 
 }
 
-var apiurl="http://localhost:3001/";
-
-function upload(i)
+function show()
 {
-    fetch(apiurl+'post', {
-    method: 'POST',
-    body: JSON.stringify(st[i]),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8'
-    }
-  }).then(function (response) {
-    if (response.ok) {
-      return response.json();
-    }
-    return Promise.reject(response);
-  }).then(function (data) {
-    alert("Data Addeed to Database Successfully...");
-  }).catch(function (error) {
-    alert('Something went wrong.', error);
-  });
-  
+  st[namelist.selectedIndex].showdata;
 }
-
-function loaddata()
-{
-
-const batchTrack = document.getElementById("namelist");
-
-const getPost = async () => {
-  const response = await fetch(apiurl+'getAll');
-  const data = await response.json();
-  return data;
-};
-
-
-const displayOption = async () => {
-  const options = await getPost();
-  for (option of options) 
-  {
-    const newOption = document.createElement("option");
-    newOption.value = option.id;
-    newOption.text = option.name;
-    batchTrack.appendChild(newOption);
-    ii=st.length;
-    st[ii]=
-      new student(
-          option.name,
-          option.rollno,
-          parseInt(option.hindi),
-          parseInt(option.english),
-          parseInt(option.math)
-          );
-    st[ii].calculate;
-  }
-};
-
-displayOption();
-  
-}
-
-loaddata();
 
 </script>
 
