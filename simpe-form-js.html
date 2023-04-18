@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+label
+{
+   width:200px;
+   display: inline-block;
+  margin: 5px;
+}
+button
+{
+width: 200px;
+padding: 10px;
+}
+</style>
+<h2>Redeclaring a Variable Using var</h2>
+
+<p id="demo"></p>
+<label>Enter Hindi Marks</label>
+<input id=hindi type=number><br>
+<label>Enter English Marks</label>
+<input id=english type=number><br>
+<label>Enter Maths Marks</label>
+<input id=maths type=number><br>
+<label></label>
+<button type=button onclick=add()>add</button><br>
+<label>Total Marks </label>
+<input id=marks type=number readonly><br>
+<label>%age </label>
+<input id=per type=text readonly><br>
+<label>Final Result : </label>
+<input id=result type=text readonly><br>
+
+
+<script>
+
+function add()
+{
+let total, percent;
+total=parseInt(hindi.value)+parseInt(english.value)+parseInt(maths.value);
+marks.value=total;
+percent=total/3;
+per.value=percent+"%";
+if(percent>36) result.value="Pass"
+else result.value="Fail"
+}
+
+</script>
+
+</body>
+</html>
