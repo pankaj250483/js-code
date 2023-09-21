@@ -1,0 +1,73 @@
+<html>
+<head>
+
+</head>
+<body id="main">
+
+
+<script>
+
+var div = document.createElement("div");
+div.style.width = "100px";
+div.style.height = "100px";
+div.style.background = "red";
+div.style.color = "white";
+div.innerHTML = "Hello";
+
+document.getElementById("main").appendChild(div);
+
+ var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "submit.php");
+ 
+    // Create an input element for Full Name
+    var FN = document.createElement("input");
+    FN.setAttribute("type", "text");
+    FN.setAttribute("name", "FullName");
+    FN.setAttribute("placeholder", "Full Name");
+ 
+     // Create an input element for date of birth
+     var DOB = document.createElement("input");
+     DOB.setAttribute("type", "text");
+     DOB.setAttribute("name", "dob");
+     DOB.setAttribute("placeholder", "DOB");
+ 
+     // Create an input element for emailID
+     var EID = document.createElement("input");
+     EID.setAttribute("type", "text");
+     EID.setAttribute("name", "emailID");
+     EID.setAttribute("placeholder", "E-Mail ID");
+ 
+      // Create an input element for password
+      var PWD = document.createElement("input");
+      PWD.setAttribute("type", "password");
+      PWD.setAttribute("name", "password");
+      PWD.setAttribute("placeholder", "Password");
+
+       // create a submit button
+                var s = document.createElement("input");
+                s.setAttribute("type", "submit");
+                s.setAttribute("value", "Submit");
+                 
+                // Append the full name input to the form
+                form.appendChild(FN);
+                 
+                // Inserting a line break
+                 
+                // Append the emailID to the form
+                form.appendChild(EID);
+          
+                 
+                // Append the Password to the form
+                form.appendChild(PWD);
+            
+                 
+                // Append the submit button to the form
+                form.appendChild(s);
+ 
+                document.getElementsByTagName("body")[0]
+               .appendChild(form);
+
+</script>
+</body>
+</html>
